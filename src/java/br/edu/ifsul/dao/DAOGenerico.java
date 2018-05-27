@@ -15,14 +15,14 @@ public class DAOGenerico<TIPO> implements Serializable{
     private List<TIPO> listaObjetos;
     private List<TIPO> listaTodos;
     @PersistenceContext(unitName = "TA-2018-1-6N1-WebPU")
-    private EntityManager em;
-    private Class classePersistente;
-    private String mensagem = "";
-    private String ordem = "id";
-    private String filtro = "";
-    private Integer maximoObjetos = 5;
-    private Integer posicaoAtual = 0;
-    private Integer totalObjetos = 0;
+    protected EntityManager em;
+    protected Class classePersistente;
+    protected String mensagem = "";
+    protected String ordem = "id";
+    protected String filtro = "";
+    protected Integer maximoObjetos = 5;
+    protected Integer posicaoAtual = 0;
+    protected Integer totalObjetos = 0;
 
     public DAOGenerico() {
     }

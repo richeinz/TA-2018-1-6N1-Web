@@ -18,9 +18,7 @@
                                  size="5" readonly="true"/>
                     <p:outputLabel value="Nome" for="txtNome"/>
                     <p:inputText value="#{controleSetor.objeto.nome}"
-                                 id="txtNome" size="40" maxlength="40"
-                                 required="true"
-                                 requiredMessage="O nome deve ser informado"/>
+                                 id="txtNome" size="40" maxlength="40"/>
                     <p:commandButton value="Salvar"
                                      icon="ui-icon-disk"
                                      actionListener="#{controleSetor.salvar()}"
@@ -30,4 +28,3 @@
         </h:panelGroup>
     </h:form>
 </html>
-
