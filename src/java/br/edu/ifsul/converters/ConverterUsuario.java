@@ -29,7 +29,7 @@ public class ConverterUsuario implements Serializable, Converter{
         if(string == null || string.equals("Selecione um registro")){
             return null;
         }
-        return em.find(Usuario.class, string);
+        return em.find(Usuario.class, Integer.parseInt(string));
     }
 
     @Override
@@ -38,7 +38,7 @@ public class ConverterUsuario implements Serializable, Converter{
             return null;
         }
         Usuario obj = (Usuario) o;
-        return obj.getNome();
+        return obj.getId().toString();
     }
     
 }

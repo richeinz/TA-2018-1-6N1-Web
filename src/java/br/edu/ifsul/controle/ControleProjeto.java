@@ -31,9 +31,11 @@ public class ControleProjeto implements Serializable{
     @EJB
     private ColaboradorDAO<Colaborador> daoColaborador;
     private Colaborador colaborador;
+    private Boolean editandoColaborador;
     @EJB
     private UsuarioDAO<Usuario> daoUsuario;
-    private Boolean editandoColaborador;
+    private Usuario usuario;
+    private Boolean editandoUsuario;
 
     public ControleProjeto() {
         editando = false;
@@ -46,15 +48,15 @@ public class ControleProjeto implements Serializable{
     
     public void novo(){
         editando = true;
-        //editandoPermissao = false;
         objeto = new Projeto();
+        editandoColaborador = false;
     }
     
     public void alterar(Object id){
         try{
             objeto = dao.getObjectById(id);
             editando = true;
-            //editandoPermissao = false;
+            editandoColaborador = false;
         }catch (Exception e){
             Util.mensagemErro("Erro ao recuperar objeto: " + Util.getMensagemErro(e));
         }
@@ -85,17 +87,22 @@ public class ControleProjeto implements Serializable{
     }
     
     public void novoColaborador(){
-        setEditandoColaborador((Boolean) true);
+        colaborador = new Colaborador();
+        editandoColaborador = true;
     }
     
     public void salvarColaborador(){
         if(objeto.getListaColaboradores().contains(colaborador)){
             Util.mensagemErro("Este projeto já possui este colaborador!");
         }else{
-            objeto.getListaColaboradores().add(colaborador);
+            objeto.adicionaColaborador(colaborador);
             Util.mensagemInformacao("Colaborador adicionado com sucesso!");
         }
         editandoColaborador = false;
+    }
+    
+    public void alteraColaborador(Colaborador obj){
+        
     }
     
     public void removerColaborador(Colaborador obj){
@@ -166,6 +173,22 @@ public class ControleProjeto implements Serializable{
 
     public void setDaoUsuario(UsuarioDAO<Usuario> daoUsuario) {
         this.daoUsuario = daoUsuario;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Boolean getEditandoUsuario() {
+        return editandoUsuario;
+    }
+
+    public void setEditandoUsuario(Boolean editandoUsuario) {
+        this.editandoUsuario = editandoUsuario;
     }
 
   
